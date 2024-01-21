@@ -25,7 +25,7 @@ const DataTable: React.FC<{
                         <TableRow>
                             <TableCell>Name</TableCell>
                             <TableCell>Selector</TableCell>
-                            <TableCell>Agrees to Term</TableCell>
+                            <TableCell sx={{ whiteSpace: "nowrap" }}>Agrees to Term</TableCell>
                             <TableCell></TableCell>
                         </TableRow>
                     </TableHead>
@@ -35,7 +35,7 @@ const DataTable: React.FC<{
                                 <TableCell>{row.name}</TableCell>
                                 <TableCell>{row.selector}</TableCell>
                                 <TableCell>{row.agreesToTerm ? "True" : "False"}</TableCell>
-                                <TableCell align="right">
+                                <TableCell align="right" sx={{ whiteSpace: "nowrap" }}>
                                     <Button
                                         variant="outlined"
                                         sx={{ marginRight: 2 }}

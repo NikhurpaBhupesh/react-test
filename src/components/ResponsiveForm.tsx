@@ -67,72 +67,76 @@ const ResponsiveForm: React.FC = () => {
     };
 
     return (
-        <>
-            <Container onSubmit={handleSubmit(onSubmit)} component="form" sx={{ mb: 4 }}>
-                <Typography variant="h5" mb={4} fontWeight={700}>
-                    Please enter your name and pick the Sectors you are currently involved in.
-                </Typography>
-                <Grid container spacing={4} mb={4}>
-                    <Grid item xs={12}>
-                        <Controller
-                            name="name"
-                            control={control}
-                            defaultValue=""
-                            render={({ field }) => (
-                                <TextField {...field} label="Name" fullWidth error={!!errors.name} />
-                            )}
-                            rules={{ required: true }}
-                        />
-                    </Grid>
-
-                    <Grid item xs={12}>
-                        <FormControl fullWidth>
-                            <InputLabel>Select</InputLabel>
+        <Grid container direction={"row"}>
+            <Grid item xs={12} md={4}>
+                <Container onSubmit={handleSubmit(onSubmit)} component="form" sx={{ mb: 4 }}>
+                    <Typography variant="h5" mb={4} fontWeight={700}>
+                        Please enter your name and pick the Sectors you are currently involved in.
+                    </Typography>
+                    <Grid container spacing={4} mb={4}>
+                        <Grid item xs={12}>
                             <Controller
-                                name="selector"
+                                name="name"
                                 control={control}
                                 defaultValue=""
                                 render={({ field }) => (
-                                    <Select {...field} error={!!errors.selector}>
-                                        {selectorOptions.map((option) => (
-                                            <MenuItem value={option.value} key={option.value}>
-                                                {option.text}
-                                            </MenuItem>
-                                        ))}
-                                    </Select>
+                                    <TextField {...field} label="Name" fullWidth error={!!errors.name} />
                                 )}
                                 rules={{ required: true }}
                             />
-                        </FormControl>
-                    </Grid>
+                        </Grid>
 
-                    <Grid item xs={12}>
-                        <Controller
-                            name="agreesToTerm"
-                            control={control}
-                            defaultValue={false}
-                            render={({ field }) => (
-                                <FormControlLabel
-                                    name="agreesToTerm"
-                                    control={<Checkbox {...field} />}
-                                    label="Agree to terms"
+                        <Grid item xs={12}>
+                            <FormControl fullWidth>
+                                <InputLabel>Select</InputLabel>
+                                <Controller
+                                    name="selector"
+                                    control={control}
+                                    defaultValue=""
+                                    render={({ field }) => (
+                                        <Select {...field} error={!!errors.selector}>
+                                            {selectorOptions.map((option) => (
+                                                <MenuItem value={option.value} key={option.value}>
+                                                    {option.text}
+                                                </MenuItem>
+                                            ))}
+                                        </Select>
+                                    )}
+                                    rules={{ required: true }}
                                 />
-                            )}
-                            rules={{ required: true }}
-                        />
-                    </Grid>
-                </Grid>
-                <Button variant="contained" type="submit" fullWidth>
-                    Submit
-                </Button>
-            </Container>
+                            </FormControl>
+                        </Grid>
 
-            <Container sx={{ mb: 4 }}>
-                {submittedFormData.length > 0 ? (
-                    <DataTable rows={submittedFormData} editFormHandler={editFormHandler} />
-                ) : null}
-            </Container>
-        </>
+                        <Grid item xs={12}>
+                            <Controller
+                                name="agreesToTerm"
+                                control={control}
+                                defaultValue={false}
+                                render={({ field }) => (
+                                    <FormControlLabel
+                                        name="agreesToTerm"
+                                        control={<Checkbox {...field} />}
+                                        label="Agree to terms"
+                                    />
+                                )}
+                                rules={{ required: true }}
+                            />
+                        </Grid>
+                    </Grid>
+                    <Button variant="contained" type="submit" fullWidth>
+                        Submit
+                    </Button>
+                </Container>
+            </Grid>
+
+            <Grid item xs={12} md={8}>
+                <Container sx={{ mb: 4 }}>
+                    {submittedFormData.length > 0 ? (
+                        <DataTable rows={submittedFormData} editFormHandler={editFormHandler} />
+                    ) : null}
+                </Container>
+            </Grid>
+        </Grid>
     );
 };
 
